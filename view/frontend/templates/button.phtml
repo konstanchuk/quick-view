@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Quick View Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
+/** @var Konstanchuk\QuickView\Block\QuickViewBtn $block */
+
+$product = $block->getProduct();
+
+$params = [
+    'product-id' => $product->getId(),
+    'product-url' => $product->getProductUrl(),
+];
+
+$paramsHtmlArray = [];
+foreach ($params as $key => $value) {
+    $paramsHtmlArray[] = sprintf('data-%s="%s"', $key, $block->escapeHtml($value));
+}
+$paramsHtml = implode(' ', $paramsHtmlArray);
+
+?>
+<div class="quick-view">
+    <div class="quick-view-btn" <?php echo $paramsHtml; ?> data-mage-init='<?php echo json_encode([
+        'konstanchuk/quickView' => new stdClass()
+    ], JSON_FORCE_OBJECT)?>'>
+        <span><?php echo __('quick view') ?></span>
+    </div>
+</div>

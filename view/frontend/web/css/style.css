@@ -1,0 +1,163 @@
+/**
+ * Quick View Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
+/** button start **/
+
+.quick-view {
+    height: 0;
+    display:none;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+}
+
+.quick-view-btn {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    top: -22px;
+    line-height: 22px;
+    background: #1979c3;
+    color: white;
+}
+
+.quick-view-btn:hover {
+    background: #ff0101;
+}
+
+.quick-view-btn span {
+    position: relative;
+}
+
+.quick-view-btn span:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: -20px;
+    top: 4px;
+    background-image: url(../images/btn-icon.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.product-item:hover .quick-view {
+    display: block;
+}
+
+.products-list .quick-view .quick-view-btn {
+    left: -60px;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    font-size: 0;
+    background: none;
+}
+
+.products-list .quick-view .quick-view-btn:hover {
+    background: #1979c3;
+}
+
+.products-list .quick-view .quick-view-btn span:before {
+    width: 25px;
+    height: 25px;
+    top: -3px;
+    left: -13px;
+}
+
+/** button end **/
+
+/** popup start **/
+
+.quick-view-window .modal-header {
+    padding: 0;
+}
+
+.quick-view-window .modal-content {
+    padding: 0;
+}
+
+.quick-view-window .modal-inner-wrap {
+    width: 90%;
+}
+
+.quick-view-slider {
+    display: table-row;
+}
+
+.quick-view-slider > div {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.quick-view-prev-btn,
+.quick-view-next-btn {
+    width: 40px;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    cursor: pointer;
+    background: rgba(224, 224, 224, 0.56);
+}
+
+.quick-view-prev-btn:hover,
+.quick-view-next-btn:hover {
+    background: #e0e0e0;
+}
+
+.quick-view-arrow {
+    position: relative;
+    height: 200px;
+}
+
+.quick-view-prev-btn .quick-view-arrow span,
+.quick-view-next-btn .quick-view-arrow span {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    font-size: 24px;
+    width: 40px;
+    display: block;
+    white-space:nowrap;
+    position: absolute;
+    top: 170px;
+    text-align: center;
+}
+.quick-view-product-content {
+    padding: 7px;
+}
+
+.quick-view-window .modal-header .action-close {
+    border: 1px solid #6e6e6e;
+    border-radius: 0;
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    padding-top: 7px;
+    z-index: 1000;
+}
+
+.quick-view-footer {
+    text-align: center;
+}
+
+.quick-view-slider-wrap {
+    display: table;
+}
+
+@media only screen and (max-width: 768px) {
+    .modal-popup.modal-slide.quick-view-window {
+        left: 0;
+    }
+}
+
+/* popup end */

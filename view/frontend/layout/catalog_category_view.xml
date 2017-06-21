@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Quick View Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css"/>
+        <css src="Konstanchuk_QuickView::css/style.css" />
+    </head>
+    <body>
+        <referenceContainer name="category.products.list">
+            <block class="Konstanchuk\QuickView\Block\QuickViewBtn"
+                   name="quick_view_btn"
+                   template="Konstanchuk_QuickView::button.phtml" />
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Konstanchuk\QuickView\Block\QuickViewPopup"
+                   name="quick_view_popup"
+                   template="Konstanchuk_QuickView::popup.phtml" />
+        </referenceContainer>
+    </body>
+</page>

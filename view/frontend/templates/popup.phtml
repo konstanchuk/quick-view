@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * Quick View Extension for Magento 2
+ *
+ * @author     Volodymyr Konstanchuk http://konstanchuk.com
+ * @copyright  Copyright (c) 2017 The authors
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ */
+
+/** @var Konstanchuk\QuickView\Block\QuickViewPopup $block */
+
+$helper = $block->getHelper();
+
+?>
+<div id="quickViewPopup" data-bind="scope:'quickViewPopup'" class="quick-view-popup">
+    <div style="display: none;" data-bind="visible: visible">
+        <div class="quick-view-slider-wrap">
+            <div class="quick-view-slider">
+                <?php if ($helper->isActivePrevNext()): ?>
+                    <!-- ko if: activePrevBtn -->
+                    <div data-bind="click: showPrevProduct" class="quick-view-prev-btn">
+                        <div class="quick-view-arrow">
+                            <!-- ko if: canShowPrevProductText -->
+                            <span><?php echo __('previous product') ?></span>
+                            <!-- /ko -->
+                            <!-- ko if: canShowPrevPageText -->
+                            <span><?php echo __('previous page') ?></span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                <?php endif; ?>
+                <div class="quick-view-product-content">
+                    <div class="quick-view-product-html" data-bind="html: productHtml"></div>
+                    <div class="quick-view-footer">
+                        <a href="#" data-bind="attr: { href: fullProductUrl }" class="action primary quick-view-full-product-btn">
+                            <?php echo __('open full product'); ?>
+                        </a>
+                    </div>
+                </div>
+                <?php if ($helper->isActivePrevNext()): ?>
+                    <!-- ko if: activeNextBtn -->
+                    <div data-bind="click: showNextProduct" class="quick-view-next-btn">
+                        <div class="quick-view-arrow">
+                            <!-- ko if: canShowNextProductText -->
+                            <span><?php echo __('next product') ?></span>
+                            <!-- /ko -->
+                            <!-- ko if: canShowNextPageText -->
+                            <span><?php echo __('next page') ?></span>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#quickViewPopup": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "quickViewPopup": {
+                        "component": "konstanchuk/quickViewPopup",
+                        "prev_next_active": <?php echo json_encode($helper->isActivePrevNext()); ?>,
+                        "page_params": <?php echo json_encode($block->getPageParams()); ?>,
+                        "infinity_scroll_params": <?php echo json_encode($block->getInfinityScrollParams()); ?>,
+                        "page_param_name": <?php echo json_encode(\Magento\Catalog\Model\Product\ProductList\Toolbar::PAGE_PARM_NAME); ?>,
+                        "quick_view_param_name": <?php echo json_encode(\Konstanchuk\QuickView\Helper\DATA::QUICK_VIEW_PARAM_NAME); ?>
+                    }
+                }
+            }
+        }
+    }
+</script>
